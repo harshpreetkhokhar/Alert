@@ -1,32 +1,9 @@
+//1st way
 variable "policy-condition" {
   type = any
 }
-# type = list(object({
-#   typeofcondition      =string
-#   aggregation_window   = number
-#   aggregation_method   = string
-#   aggregation_delay    = number
-#   expiration_duration  = number
-#   critical = object({
-#     operator               = string
-#     threshold_occurrences  = string
-#     threshold_duration     = string
-#     threshold              = number
-#   })
-#   warning = object({
-#     operator               = string
-#     threshold_occurrences  = string
-#     threshold_duration     = string
-#     threshold              = number
-#   })
-# }))
 
-
-
-# variable "query" {
-#   type = string
-# }
-
+//2nd way
 variable "typeofdestination" {
   type = string
 }
@@ -59,7 +36,7 @@ variable "accountID" {
 }
 
 
-
+//3rd way
 variable "alert-workflow" {
   type = list(object({
     muting_rules_handling = string
