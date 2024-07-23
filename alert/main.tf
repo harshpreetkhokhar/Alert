@@ -1,4 +1,4 @@
-// entities
+
 data "newrelic_entity" "app" {
   name   = "Foodme-test"
   domain = "APM"
@@ -9,26 +9,9 @@ data "newrelic_entity" "app" {
   }
 }
 
-# locals {
-#   custom_tags = {
-#     "owner" = "harsh"
-#     "mail"  = "xyz@gmail.com"
-#   }
-# }
-
-# resource "newrelic_entity_tags" "foo" {
-#   guid = data.newrelic_entity.app.guid
-#   dynamic "tag" {
-#     for_each = local.custom_tags
-#     content {
-#       key    = tag.key
-#       values = [tag.value]
-#     }
-#   }
-# }
 
 
-//alert- policy,condition and muting rule
+
 
 resource "newrelic_alert_policy" "Policy1" {
   name = "tf-policy"
@@ -41,17 +24,12 @@ resource "newrelic_nrql_alert_condition" "condition" {
   type        = each.value.typeofcondition
   name        = "tf-condition"
   description = "Alert when transactions are taking too long"
-  #   runbook_url                    = "https://www.example.com"
   enabled = true
-  #   violation_time_limit_seconds   = 3600
-  #   fill_option                    = "static"
-  #   fill_value                     = 0
   aggregation_window  = each.value.aggregation_window
   aggregation_method  = each.value.aggregation_method
   aggregation_delay   = each.value.aggregation_delay
   expiration_duration = each.value.expiration_duration
-  #   open_violation_on_expiration   = true
-  #   close_violations_on_expiration = true
+
   slide_by = 30
 
   nrql {
